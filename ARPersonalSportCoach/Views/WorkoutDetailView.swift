@@ -18,9 +18,13 @@ struct WorkoutDetailView: View {
         ScrollView {
             LazyVGrid(columns: layout, spacing: 16) {
                 ForEach(workout.exercises, id: \.id) { exercise in
-                    ExerciseCell(exercise: exercise)
+                    NavigationLink(destination: Text("Destination")) {
+                        ExerciseCell(exercise: exercise)
+                    }
+                    .buttonStyle(ScaleButtonStyle())
                 }
             }
+            .padding(.top)
             .padding(.horizontal)
         }
         .navigationTitle(workout.name)
