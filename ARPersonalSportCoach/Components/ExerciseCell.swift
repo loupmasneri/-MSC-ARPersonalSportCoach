@@ -1,0 +1,51 @@
+//
+//  ExerciseCell.swift
+//  ARPersonalSportCoach
+//
+//  Created by Loup Masneri on 4/16/21.
+//
+
+import SwiftUI
+
+struct ExerciseCell: View {
+    var exercise: Exercise
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                HStack {
+                    ForEach(exercise.icons, id: \.self) { icon in
+                        Image(icon)
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .aspectRatio(contentMode: .fit)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                }
+                
+                Spacer()
+                
+                Text(exercise.name)
+                    .foregroundColor(.white)
+                    .bold()
+                    .font(.system(size: 18))
+                Text(exercise.repetitions)
+                    .foregroundColor(.white)
+                    .font(.system(size: 16))
+            }
+            .padding(.all, 8)
+            
+            Spacer()
+        }
+        .frame(width: screen.width / 2 - (16 * 2), height: 124)
+        .background(exercise.color)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .shadow(color: exercise.color.opacity(0.40), radius: 6, x: 0, y: 6)
+    }
+}
+
+struct ExerciseCell_Previews: PreviewProvider {
+    static var previews: some View {
+        ExerciseCell(exercise: workoutData[0].exercises[0])
+    }
+}
