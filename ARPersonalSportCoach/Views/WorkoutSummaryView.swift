@@ -1,13 +1,16 @@
 //
-//  WorkoutDetailView.swift
+//  WorkoutSummaryView.swift
 //  ARPersonalSportCoach
 //
-//  Created by Loup Masneri on 4/16/21.
+//  Created by Loup Masneri on 4/19/21.
 //
 
 import SwiftUI
 
-struct WorkoutDetailView: View {
+struct WorkoutSummaryView: View {
+    var hours: Int
+    var minutes: Int
+    var seconds: Int
     var workout: Workout
     let layout = [
         GridItem(.flexible()),
@@ -17,11 +20,10 @@ struct WorkoutDetailView: View {
     var body: some View {
         ZStack {
             ScrollView {
-                Text("\(workout.rounds) rounds")
+                Text("\(hours):\(minutes):\(seconds)")
                     .bold()
                     .font(.title2)
                     .foregroundColor(.customBlack)
-                    .padding(.top)
                 LazyVGrid(columns: layout, spacing: 16) {
                     ForEach(workout.exercises, id: \.id) { exercise in
                         NavigationLink(destination: Text("Destination")) {
@@ -31,15 +33,15 @@ struct WorkoutDetailView: View {
                     }
                 }
                 .padding(.top)
-                .padding(.horizontal, 32)
+                .padding(.horizontal)
             }
             .navigationTitle(workout.name)
             
             VStack {
                 Spacer()
                 VStack {
-                    NavigationLink(destination: WorkoutExerciseView(workout: workout)) {
-                        Text("Begin workout")
+                    NavigationLink(destination: ContentView()) {
+                        Text("Home")
                             .bold()
                             .font(.system(size: 18))
                             .foregroundColor(.white)
@@ -47,18 +49,19 @@ struct WorkoutDetailView: View {
                             .frame(width: screen.width - (16 * 2))
                             .background(Color.blue)
                             .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .padding(.bottom, 32)
                     }
                     .buttonStyle(BackgroundGradientStyle(gradientColors: [Color.customWhite.opacity(0.001), .customWhite]))
                 }
+
+                
             }
             .edgesIgnoringSafeArea(.bottom)
         }
     }
 }
 
-struct WorkoutDetailView_Previews: PreviewProvider {
+struct WorkoutSummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutDetailView(workout: workoutData[1])
+        WorkoutSummaryView(hours: 0, minutes: 34, seconds: 46, workout: workoutData[0])
     }
 }

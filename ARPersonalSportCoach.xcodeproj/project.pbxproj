@@ -21,6 +21,8 @@
 		3703CD572629C7D50036DE04 /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703CD562629C7D50036DE04 /* WorkoutDetailView.swift */; };
 		3703CD5B2629C9A20036DE04 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703CD5A2629C9A20036DE04 /* ColorExtension.swift */; };
 		3703CD5E2629DFE40036DE04 /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703CD5D2629DFE40036DE04 /* ExerciseCell.swift */; };
+		37F518D9262D9756003DD567 /* WorkoutExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F518D8262D9756003DD567 /* WorkoutExerciseView.swift */; };
+		37F518DC262D9ECF003DD567 /* WorkoutSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F518DB262D9ECF003DD567 /* WorkoutSummaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		3703CD562629C7D50036DE04 /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		3703CD5A2629C9A20036DE04 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		3703CD5D2629DFE40036DE04 /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
+		37F518D8262D9756003DD567 /* WorkoutExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseView.swift; sourceTree = "<group>"; };
+		37F518DB262D9ECF003DD567 /* WorkoutSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				3703CD562629C7D50036DE04 /* WorkoutDetailView.swift */,
+				37F518D8262D9756003DD567 /* WorkoutExerciseView.swift */,
+				37F518DB262D9ECF003DD567 /* WorkoutSummaryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -219,6 +225,7 @@
 			files = (
 				3703CD2C2629C13E0036DE04 /* AppDelegate.swift in Sources */,
 				3703CD572629C7D50036DE04 /* WorkoutDetailView.swift in Sources */,
+				37F518DC262D9ECF003DD567 /* WorkoutSummaryView.swift in Sources */,
 				3703CD532629C3BE0036DE04 /* ButtonStyle.swift in Sources */,
 				3703CD472629C1E40036DE04 /* WorkoutCell.swift in Sources */,
 				3703CD4D2629C1ED0036DE04 /* Workout.swift in Sources */,
@@ -227,6 +234,7 @@
 				3703CD5E2629DFE40036DE04 /* ExerciseCell.swift in Sources */,
 				3703CD302629C13E0036DE04 /* ContentView.swift in Sources */,
 				3703CD4A2629C1EA0036DE04 /* Exercise.swift in Sources */,
+				37F518D9262D9756003DD567 /* WorkoutExerciseView.swift in Sources */,
 				3703CD5B2629C9A20036DE04 /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

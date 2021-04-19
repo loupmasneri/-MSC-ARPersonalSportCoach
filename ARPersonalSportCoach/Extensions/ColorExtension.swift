@@ -9,7 +9,8 @@ import SwiftUI
 
 extension Color {
     // all
-    static let customBlack = Color("black")
+    static let customBlack = Color("customBlack")
+    static let customWhite = Color("customWhite")
     
     // upper body colors
     static let pushUp = Color("pushUp")
