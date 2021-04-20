@@ -12,7 +12,7 @@ class UserDefaultsHelper {
     public func getWorkoutSummaries() -> [WorkoutSummary] {
         if let data = UserDefaults.standard.data(forKey: "workoutSummary") {
             if let decoded = try? JSONDecoder().decode([WorkoutSummary].self, from: data) {
-                return decoded
+                return decoded.sorted(by: { $0.date.compare($1.date) == .orderedDescending })
             }
         }
         return []
