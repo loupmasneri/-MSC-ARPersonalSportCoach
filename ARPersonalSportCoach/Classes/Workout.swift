@@ -34,14 +34,21 @@ var workoutData: [Workout] = [
         Exercise(icons: ["pecMiddleArms"], color: "diamondPushUp", name: "Diamond push up", repetitions: "5 reps"),
         Exercise(icons: ["abdominals"], color: "plank", name: "Plank", repetitions: "45 secs"),
         Exercise(icons: ["pecArms"], color: "pushUp", name: "Push up", repetitions: "5 reps"),
-        Exercise(icons: ["pecMiddleArms"], color: "diamondPushUp", name: "Diamond push up", repetitions: "5 reps")
+        Exercise(icons: ["pecMiddleArms"], color: "diamondPushUp", name: "Diamond push up", repetitions: "5 reps"),
+        Exercise(icons: ["rest"], color: "customBlack", name: "REST", repetitions: "2 minutes"),
     ]),
     Workout(name: "Lower body", description: "Work your legs", image: "lowerBody", rounds: 7, exercises: [
         Exercise(icons: ["upperLegs", "butt"], color: "squat", name: "Squat", repetitions: "15 reps"),
+        Exercise(icons: ["rest"], color: "customBlack", name: "REST", repetitions: "15 secs"),
         Exercise(icons: ["upperLegs"], color: "lateralSquat", name: "Lateral squat", repetitions: "10 reps / leg"),
+        Exercise(icons: ["rest"], color: "customBlack", name: "REST", repetitions: "15 secs"),
         Exercise(icons: ["allLegs", "butt"], color: "jumpSquat", name: "Jump squat", repetitions: "10 reps"),
+        Exercise(icons: ["rest"], color: "customBlack", name: "REST", repetitions: "15 secs"),
         Exercise(icons: ["insideLegs"], color: "janeFonda", name: "Jane fonda", repetitions: "15 reps / leg"),
+        Exercise(icons: ["rest"], color: "customBlack", name: "REST", repetitions: "15 secs"),
         Exercise(icons: ["allLegs", "butt"], color: "prisonerWalkUp", name: "Prisoner walk up", repetitions: "20 reps"),
+        Exercise(icons: ["rest"], color: "customBlack", name: "REST", repetitions: "15 secs"),
         Exercise(icons: ["butt"], color: "reverseLunge", name: "Reverse lunge", repetitions: "10 reps"),
+        Exercise(icons: ["rest"], color: "customBlack", name: "REST", repetitions: "2 mins"),
     ])
 ]

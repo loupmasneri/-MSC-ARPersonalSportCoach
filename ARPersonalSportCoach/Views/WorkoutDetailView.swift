@@ -33,7 +33,7 @@ struct WorkoutDetailView: View {
                 }
                 .padding(.top)
                 .padding(.horizontal, 32)
-                .padding(.bottom, 64)
+                .padding(.bottom, 96)
             }
             .navigationTitle(workout.name)
             

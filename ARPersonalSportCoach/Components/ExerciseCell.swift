@@ -26,11 +26,11 @@ struct ExerciseCell: View {
                 Spacer()
                 
                 Text(exercise.name)
-                    .foregroundColor(.white)
+                    .foregroundColor(exercise.name.lowercased() != "rest" ? .white : .customWhite)
                     .bold()
                     .font(.system(size: 18))
                 Text(exercise.repetitions)
-                    .foregroundColor(.white)
+                    .foregroundColor(exercise.name.lowercased() != "rest" ? .white : .customWhite)
                     .font(.system(size: 16))
             }
             .padding(.all, 8)
