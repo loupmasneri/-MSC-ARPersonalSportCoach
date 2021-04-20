@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WorkoutDetailView: View {
+    @Binding var rootIsActive: Bool
     var workout: Workout
     let layout = [
         GridItem(.flexible()),
@@ -32,13 +33,14 @@ struct WorkoutDetailView: View {
                 }
                 .padding(.top)
                 .padding(.horizontal, 32)
+                .padding(.bottom, 64)
             }
             .navigationTitle(workout.name)
             
             VStack {
                 Spacer()
                 VStack {
-                    NavigationLink(destination: WorkoutExerciseView(workout: workout)) {
+                    NavigationLink(destination: WorkoutExerciseView(rootIsActive: $rootIsActive, workout: workout)) {
                         Text("Begin workout")
                             .bold()
                             .font(.system(size: 18))
@@ -59,6 +61,6 @@ struct WorkoutDetailView: View {
 
 struct WorkoutDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutDetailView(workout: workoutData[1])
+        WorkoutDetailView(rootIsActive: .constant(false), workout: workoutData[1])
     }
 }

@@ -17,14 +17,10 @@ struct WorkoutExerciseView: View {
     @State var seconds: Int = 0
     @State var globalTimer: Timer? = nil
     @State var currentExerciseTimer: Timer? = nil
-    @State var currentExercise: Exercise
+    @State var currentExercise: Int = 0
     @State var currentRound: Int = 1
+    @Binding var rootIsActive: Bool
     var workout: Workout
-    
-    init(workout: Workout) {
-        self.workout = workout
-        _currentExercise = State(initialValue: workout.exercises[0])
-    }
     
     private func showTimer(minutes: Int, seconds: Int) -> String {
         var text = ""
@@ -38,6 +34,11 @@ struct WorkoutExerciseView: View {
     
     private func startGlobalTimer() {
         // 1. Make a new timer
+        guard globalTimer == nil else {
+            globalTimer?.invalidate()
+            globalTimer = nil
+            return
+        }
         globalTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
             // 2. Check time to add to H:M:S
             if self.globalSeconds == 59 {
@@ -54,7 +55,7 @@ struct WorkoutExerciseView: View {
         }
     }
     
-    private func startExerciseTimer() {
+    func startExerciseTimer() {
         // 1. Make a new timer
         currentExerciseTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { tempTimer in
             // 2. Check time to add to H:M:S
@@ -75,18 +76,23 @@ struct WorkoutExerciseView: View {
     var body: some View {
         ZStack {
             // TODO SHOW AR VIEW HERE INSTEAD OF TEXT HELLO WORLD
-            Text("Hello, World!")
+            ARViewContainer()
+                .edgesIgnoringSafeArea(.all)
                 .onAppear(perform: {
                     startGlobalTimer()
                     startExerciseTimer()
-            })
+                })
             
             VStack {
                 Spacer()
                 
                 VStack {
+                    Text("Round \(currentRound)/\(workout.rounds)")
+                        .bold()
+                        .font(.system(size: 20))
+                        .foregroundColor(.white)
                     HStack {
-                        Image((currentExercise.icons.first)!)
+                        Image((workout.exercises[currentExercise].icons.first)!)
                             .resizable()
                             .frame(width: 64, height: 64)
                             .aspectRatio(contentMode: .fit)
@@ -94,7 +100,7 @@ struct WorkoutExerciseView: View {
                             .padding()
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("\(currentExercise.name) - \(currentExercise.repetitions)")
+                            Text("\(workout.exercises[currentExercise].name) - \(workout.exercises[currentExercise].repetitions)")
                                 .bold()
                                 .font(.system(size: 20))
                                 .foregroundColor(.white)
@@ -107,38 +113,73 @@ struct WorkoutExerciseView: View {
                     }
                     .frame(width: screen.width)
                     
-                    if currentExercise.id == workout.exercises[workout.exercises.count].id && currentRound == workout.rounds {
-                        NavigationLink(destination: WorkoutSummaryView(hours: hours, minutes: minutes, seconds: seconds, workout: workout)) {
-                            Text("Begin workout")
-                                .bold()
-                                .font(.system(size: 18))
-                                .foregroundColor(.white)
-                                .padding()
-                                .frame(width: screen.width - (16 * 2))
-                                .background(Color.red)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                        }
-                        .buttonStyle(ScaleButtonStyle())
-                    } else {
-                        Button(action: {
-                            print("next exercise")
-                        }) {
-                            Text("Next exercise")
-                                .bold()
-                                .font(.system(size: 18))
-                                .foregroundColor(.white)
-                                .padding()
-                                .frame(width: screen.width - (16 * 2))
-                                .background(Color.blue)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                        }
-                        .buttonStyle(ScaleButtonStyle())
-                    }
+                    NextExerciseButtonView(currentExercise: $currentExercise, currentRound: $currentRound, globalTimer: $globalTimer, currentExerciseTimer: $currentExerciseTimer, globalHours: $globalHours, globalMinutes: $globalMinutes, globalSeconds: $globalSeconds, hours: $hours, minutes: $minutes, seconds: $seconds, rootIsActive: $rootIsActive, startExerciseTimer: startExerciseTimer, workout: workout)
                 }
             }
             
         }
         .background(Color.black)
+    }
+}
+
+struct NextExerciseButtonView: View {
+    @Binding var currentExercise: Int
+    @Binding var currentRound: Int
+    @Binding var globalTimer: Timer?
+    @Binding var currentExerciseTimer: Timer?
+    @Binding var globalHours: Int
+    @Binding var globalMinutes: Int
+    @Binding var globalSeconds: Int
+    @Binding var hours: Int
+    @Binding var minutes: Int
+    @Binding var seconds: Int
+    @Binding var rootIsActive: Bool
+    var startExerciseTimer: () -> Void
+    var workout: Workout
+    
+    private func resetTimer() {
+        currentExerciseTimer!.invalidate()
+        currentExerciseTimer = nil
+        hours = 0
+        minutes = 0
+        seconds = 0
+        startExerciseTimer()
+    }
+    
+    var body: some View {
+        if workout.exercises[currentExercise].id == workout.exercises[workout.exercises.count - 1].id && currentRound == workout.rounds {
+            NavigationLink(destination: WorkoutSummaryView(globalTimer: $globalTimer, shouldPopToRootView: $rootIsActive, hours: globalHours, minutes: globalMinutes, seconds: globalSeconds, workout: workout)) {
+                Text("Finish workout")
+                    .bold()
+                    .font(.system(size: 18))
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(width: screen.width - (16 * 2))
+                    .background(Color.red)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+            .buttonStyle(ScaleButtonStyle())
+        } else {
+            Button(action: {
+                if currentExercise == workout.exercises.count - 1 {
+                    currentExercise = 0
+                    currentRound += 1
+                } else {
+                    currentExercise += 1
+                }
+                resetTimer()
+            }) {
+                Text("Next exercise")
+                    .bold()
+                    .font(.system(size: 18))
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(width: screen.width - (16 * 2))
+                    .background(Color.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+            .buttonStyle(ScaleButtonStyle())
+        }
     }
 }
 
@@ -165,7 +206,7 @@ struct ARViewContainer: UIViewRepresentable {
 #if DEBUG
 struct WorkoutExerciseView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutExerciseView(workout: workoutData[0])
+        WorkoutExerciseView(rootIsActive: .constant(false), workout: workoutData[0])
     }
 }
 #endif

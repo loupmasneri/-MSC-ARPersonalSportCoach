@@ -21,6 +21,9 @@
 		3703CD572629C7D50036DE04 /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703CD562629C7D50036DE04 /* WorkoutDetailView.swift */; };
 		3703CD5B2629C9A20036DE04 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703CD5A2629C9A20036DE04 /* ColorExtension.swift */; };
 		3703CD5E2629DFE40036DE04 /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703CD5D2629DFE40036DE04 /* ExerciseCell.swift */; };
+		37BD180C262EF98F0021E675 /* WorkoutSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BD180B262EF98F0021E675 /* WorkoutSummary.swift */; };
+		37BD180F262F02B20021E675 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BD180E262F02B20021E675 /* ProfileView.swift */; };
+		37BD1812262F045E0021E675 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BD1811262F045E0021E675 /* UserDefaultsHelper.swift */; };
 		37F518D9262D9756003DD567 /* WorkoutExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F518D8262D9756003DD567 /* WorkoutExerciseView.swift */; };
 		37F518DC262D9ECF003DD567 /* WorkoutSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F518DB262D9ECF003DD567 /* WorkoutSummaryView.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +45,9 @@
 		3703CD562629C7D50036DE04 /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		3703CD5A2629C9A20036DE04 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		3703CD5D2629DFE40036DE04 /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
+		37BD180B262EF98F0021E675 /* WorkoutSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummary.swift; sourceTree = "<group>"; };
+		37BD180E262F02B20021E675 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		37BD1811262F045E0021E675 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		37F518D8262D9756003DD567 /* WorkoutExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseView.swift; sourceTree = "<group>"; };
 		37F518DB262D9ECF003DD567 /* WorkoutSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				3703CD4C2629C1ED0036DE04 /* Workout.swift */,
+				37BD1811262F045E0021E675 /* UserDefaultsHelper.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -114,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				3703CD492629C1EA0036DE04 /* Exercise.swift */,
+				37BD180B262EF98F0021E675 /* WorkoutSummary.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -141,6 +149,7 @@
 				3703CD562629C7D50036DE04 /* WorkoutDetailView.swift */,
 				37F518D8262D9756003DD567 /* WorkoutExerciseView.swift */,
 				37F518DB262D9ECF003DD567 /* WorkoutSummaryView.swift */,
+				37BD180E262F02B20021E675 /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -223,14 +232,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37BD180C262EF98F0021E675 /* WorkoutSummary.swift in Sources */,
 				3703CD2C2629C13E0036DE04 /* AppDelegate.swift in Sources */,
 				3703CD572629C7D50036DE04 /* WorkoutDetailView.swift in Sources */,
 				37F518DC262D9ECF003DD567 /* WorkoutSummaryView.swift in Sources */,
 				3703CD532629C3BE0036DE04 /* ButtonStyle.swift in Sources */,
 				3703CD472629C1E40036DE04 /* WorkoutCell.swift in Sources */,
 				3703CD4D2629C1ED0036DE04 /* Workout.swift in Sources */,
+				37BD180F262F02B20021E675 /* ProfileView.swift in Sources */,
 				3703CD2E2629C13E0036DE04 /* SceneDelegate.swift in Sources */,
 				3703CD442629C1C90036DE04 /* Experience.rcproject in Sources */,
+				37BD1812262F045E0021E675 /* UserDefaultsHelper.swift in Sources */,
 				3703CD5E2629DFE40036DE04 /* ExerciseCell.swift in Sources */,
 				3703CD302629C13E0036DE04 /* ContentView.swift in Sources */,
 				3703CD4A2629C1EA0036DE04 /* Exercise.swift in Sources */,

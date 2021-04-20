@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct Exercise {
+struct Exercise: Codable {
     var id = UUID()
     var icons: [String]
-    var color: Color
+    var color: String
     var name: String
     var repetitions: String
 }

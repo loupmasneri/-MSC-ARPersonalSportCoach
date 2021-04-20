@@ -9,25 +9,31 @@ import SwiftUI
 
 struct WorkoutCell: View {
     var workout: Workout
+    var headerColor: Color
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading) {
-                Text(workout.name)
-                    .bold()
-                    .font(.title)
-                    .foregroundColor(.white)
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(workout.name)
+                        .bold()
+                        .font(.title)
+                        .foregroundColor(.white)
+                    
+                    Text(workout.description)
+                        .bold()
+                        .font(.subheadline)
+                        .foregroundColor(.white)
+                        .padding(.top, 4)
                 
-                Text(workout.description)
-                    .bold()
-                    .font(.subheadline)
-                    .foregroundColor(.white)
+                    Spacer()
+                }
+                .padding()
                 
                 Spacer()
             }
-            .padding()
-            
-            Spacer()
+            .frame(height: 150)
+            .background(LinearGradient(gradient: Gradient(colors: [headerColor, headerColor.opacity(0.001)]), startPoint: .top, endPoint: .bottom))
         }
         .frame(width: screen.width - 32, height: screen.width - 32, alignment: .top)
         .background(
@@ -42,6 +48,6 @@ struct WorkoutCell: View {
 
 struct WorkoutCell_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutCell(workout: workoutData[0])
+        WorkoutCell(workout: workoutData[1], headerColor: .blue)
     }
 }

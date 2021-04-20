@@ -10,13 +10,28 @@ import SwiftUI
 let screen = UIScreen.main.bounds
 
 struct ContentView: View {
+    @State var isActive: Bool = false
+    @State var selectedWorkout: Workout? = nil
+    @State var showProfileView: Bool = false
+    
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
+                // This prevent: When you click on a cell it open the wrong workout. https://stackoverflow.com/questions/65398123/swiftui-list-foreach-in-combination-with-navigationlink-and-isactive-doesnt
+                VStack {
+                    if selectedWorkout != nil {
+                        NavigationLink(destination: WorkoutDetailView(rootIsActive: $isActive, workout: selectedWorkout!), isActive: $isActive) { EmptyView() }
+                    }
+                }
+                .hidden()
+                
                 LazyVStack(spacing: 32) {
                     ForEach(workoutData, id: \.id) { workout in
-                        NavigationLink(destination: WorkoutDetailView(workout: workout)) {
-                            WorkoutCell(workout: workout)
+                        Button(action: {
+                            self.selectedWorkout = workout
+                            self.isActive = true
+                        }) {
+                            WorkoutCell(workout: workout, headerColor: Color(workout.exercises[0].color))
                         }
                         .buttonStyle(ScaleButtonStyle())
                     }
@@ -27,12 +42,13 @@ struct ContentView: View {
             .navigationBarHidden(false)
             .navigationBarItems(
                 trailing: Button(action: {
-                    print("DEBUG: Profile")
+                    showProfileView.toggle()
                 }) {
                     Image(systemName: "person.crop.circle")
                         .foregroundColor(.customBlack)
                         .font(.largeTitle)
                 }
+                .sheet(isPresented: $showProfileView) { ProfileView() }
             )
         }
         
