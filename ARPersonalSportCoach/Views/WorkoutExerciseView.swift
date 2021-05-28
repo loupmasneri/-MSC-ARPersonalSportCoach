@@ -22,6 +22,7 @@ struct WorkoutExerciseView: View {
     @State var currentExerciseTimer: Timer? = nil
     @State var currentExercise: Int = 0
     @State var currentRound: Int = 1
+    @State var anchorEntity: AnchorEntity = AnchorEntity(plane: .any)
     @Binding var rootIsActive: Bool
     @Binding var selectedModel: Model?
     var workout: Workout
@@ -80,7 +81,7 @@ struct WorkoutExerciseView: View {
 
     var body: some View {
         ZStack {
-            ARViewContainer(model: $selectedModel)
+            ARViewContainer(model: $selectedModel, anchorEntity: $anchorEntity)
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
@@ -205,6 +206,7 @@ struct NextExerciseButtonView: View {
 
 struct ARViewContainer: UIViewRepresentable {
     @Binding var model: Model?
+    @Binding var anchorEntity: AnchorEntity
     
     func makeUIView(context: Context) -> ARView {
         let arView = ARView(frame: .zero)
@@ -224,9 +226,12 @@ struct ARViewContainer: UIViewRepresentable {
     
     func updateUIView(_ uiView: ARView, context: Context) {
         guard let model = model else { return }
+        
+        for entity in anchorEntity.children {
+            entity.removeFromParent()
+        }
 
         if let modelEntity = model.entity {
-            let anchorEntity = AnchorEntity(plane: .any)
             anchorEntity.addChild(modelEntity)
 
             uiView.scene.addAnchor(anchorEntity)
