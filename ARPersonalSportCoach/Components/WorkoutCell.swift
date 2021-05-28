@@ -10,6 +10,7 @@ import SwiftUI
 struct WorkoutCell: View {
     var workout: Workout
     var headerColor: Color
+    var height = screen.width - 32
     
     var body: some View {
         HStack {
@@ -32,10 +33,10 @@ struct WorkoutCell: View {
                 
                 Spacer()
             }
-            .frame(height: 150)
+            .frame(height: height > 150 ? 150 : 80)
             .background(LinearGradient(gradient: Gradient(colors: [headerColor, headerColor.opacity(0.001)]), startPoint: .top, endPoint: .bottom))
         }
-        .frame(width: screen.width - 32, height: screen.width - 32, alignment: .top)
+        .frame(width: screen.width - 32, height: height, alignment: .top)
         .background(
             Image(workout.image)
                 .resizable()

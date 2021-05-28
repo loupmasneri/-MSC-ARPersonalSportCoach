@@ -13,4 +13,5 @@ struct Exercise: Codable {
     var color: String
     var name: String
     var repetitions: String
+    var modelName: String
 }

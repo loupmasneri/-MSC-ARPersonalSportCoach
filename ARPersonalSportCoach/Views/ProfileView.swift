@@ -24,7 +24,7 @@ struct ProfileView: View {
                 LazyVStack(spacing: 32) {
                     ForEach(workoutSummaries, id: \.id) { workoutSummary in
                         NavigationLink(destination: WorkoutSummaryView(globalTimer: Binding.constant(nil), shouldPopToRootView: .constant(false), comeFromProfile: true, hours: workoutSummary.hours, minutes: workoutSummary.minutes, seconds: workoutSummary.seconds, workout: workoutSummary.workout)) {
-                            WorkoutCell(workout: Workout(name: transformDate(workoutSummary.date), description: "You have done the \(workoutSummary.workout.name) workout", image: workoutSummary.workout.image, rounds: workoutSummary.workout.rounds, exercises: workoutSummary.workout.exercises), headerColor: Color(workoutSummary.workout.exercises[0].color))
+                            WorkoutCell(workout: Workout(name: transformDate(workoutSummary.date), description: "You have done the \(workoutSummary.workout.name) workout", image: workoutSummary.workout.image, rounds: workoutSummary.workout.rounds, exercises: workoutSummary.workout.exercises), headerColor: Color(workoutSummary.workout.exercises[0].color), height: 120)
                         }
                         .buttonStyle(ScaleButtonStyle())
                     }

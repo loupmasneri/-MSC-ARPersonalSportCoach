@@ -7,6 +7,9 @@
 
 import SwiftUI
 import RealityKit
+import ARKit
+import ReplayKit
+import UIKit
 
 struct WorkoutExerciseView: View {
     @State var globalHours: Int = 0
@@ -20,7 +23,9 @@ struct WorkoutExerciseView: View {
     @State var currentExercise: Int = 0
     @State var currentRound: Int = 1
     @Binding var rootIsActive: Bool
+    @Binding var selectedModel: Model?
     var workout: Workout
+    var models: [Model]
     
     private func showTimer(minutes: Int, seconds: Int) -> String {
         var text = ""
@@ -75,17 +80,12 @@ struct WorkoutExerciseView: View {
 
     var body: some View {
         ZStack {
-            // TODO SHOW AR VIEW HERE INSTEAD OF TEXT HELLO WORLD
-            ARViewContainer()
+            ARViewContainer(model: $selectedModel)
                 .edgesIgnoringSafeArea(.all)
-                .onAppear(perform: {
-                    startGlobalTimer()
-                    startExerciseTimer()
-                })
             
             VStack {
                 Spacer()
-                
+
                 VStack {
                     Text("Round \(currentRound)/\(workout.rounds)")
                         .bold()
@@ -98,13 +98,13 @@ struct WorkoutExerciseView: View {
                             .aspectRatio(contentMode: .fit)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                             .padding()
-                        
+
                         VStack(alignment: .leading, spacing: 8) {
                             Text("\(workout.exercises[currentExercise].name) - \(workout.exercises[currentExercise].repetitions)")
                                 .bold()
                                 .font(.system(size: 20))
                                 .foregroundColor(.white)
-                            
+
                             Text(showTimer(minutes: self.minutes, seconds: self.seconds))
                                 .bold()
                                 .font(.system(size: 18))
@@ -112,17 +112,35 @@ struct WorkoutExerciseView: View {
                         }
                     }
                     .frame(width: screen.width)
-                    
-                    NextExerciseButtonView(currentExercise: $currentExercise, currentRound: $currentRound, globalTimer: $globalTimer, currentExerciseTimer: $currentExerciseTimer, globalHours: $globalHours, globalMinutes: $globalMinutes, globalSeconds: $globalSeconds, hours: $hours, minutes: $minutes, seconds: $seconds, rootIsActive: $rootIsActive, startExerciseTimer: startExerciseTimer, workout: workout)
+
+                    NextExerciseButtonView(selectedModel: $selectedModel, models: models, currentExercise: $currentExercise, currentRound: $currentRound, globalTimer: $globalTimer, currentExerciseTimer: $currentExerciseTimer, globalHours: $globalHours, globalMinutes: $globalMinutes, globalSeconds: $globalSeconds, hours: $hours, minutes: $minutes, seconds: $seconds, rootIsActive: $rootIsActive, startExerciseTimer: startExerciseTimer, workout: workout)
                 }
             }
             
         }
+        .navigationBarItems(
+            trailing: Button(action: {
+                let nextModelIndex = models.firstIndex(where: {$0.modelName == workout.exercises[currentExercise].modelName})
+                selectedModel = models[nextModelIndex!]
+            }) {
+                Text("Move the Coach")
+                    .foregroundColor(.red)
+            }
+            .buttonStyle(ScaleButtonStyle())
+        )
+        .onAppear(perform: {
+            selectedModel = models[0]
+            startGlobalTimer()
+            startExerciseTimer()
+        })
         .background(Color.black)
+        
     }
 }
 
 struct NextExerciseButtonView: View {
+    @Binding var selectedModel: Model?
+    var models: [Model]
     @Binding var currentExercise: Int
     @Binding var currentRound: Int
     @Binding var globalTimer: Timer?
@@ -166,6 +184,8 @@ struct NextExerciseButtonView: View {
                     currentRound += 1
                 } else {
                     currentExercise += 1
+                    let nextModelIndex = models.firstIndex(where: {$0.modelName == workout.exercises[currentExercise].modelName})
+                    selectedModel = models[nextModelIndex!]
                 }
                 resetTimer()
             }) {
@@ -184,29 +204,43 @@ struct NextExerciseButtonView: View {
 }
 
 struct ARViewContainer: UIViewRepresentable {
+    @Binding var model: Model?
     
     func makeUIView(context: Context) -> ARView {
-        
         let arView = ARView(frame: .zero)
+        let config = ARWorldTrackingConfiguration()
         
-        // Load the "Box" scene from the "Experience" Reality File
-        let boxAnchor = try! Experience.loadBox()
+        config.planeDetection = [.horizontal]
+        config.environmentTexturing = .automatic
         
-        // Add the box anchor to the scene
-        arView.scene.anchors.append(boxAnchor)
+        if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh) {
+            config.sceneReconstruction = .mesh
+        }
+        
+        arView.session.run(config)
         
         return arView
+    }
+    
+    func updateUIView(_ uiView: ARView, context: Context) {
+        guard let model = model else { return }
+
+        if let modelEntity = model.entity {
+            let anchorEntity = AnchorEntity(plane: .any)
+            anchorEntity.addChild(modelEntity)
+
+            uiView.scene.addAnchor(anchorEntity)
+            for anim in modelEntity.availableAnimations {
+                modelEntity.playAnimation(anim.repeat(duration: .infinity), transitionDuration: 1.25, startsPaused: false)
+            }
+        } else {
+            print("DEBUG: Unable to load modelEntity named: \(model.modelName)")
+        }
+
+        DispatchQueue.main.async {
+            self.model = nil
+        }
         
     }
     
-    func updateUIView(_ uiView: ARView, context: Context) {}
-    
 }
-
-#if DEBUG
-struct WorkoutExerciseView_Previews: PreviewProvider {
-    static var previews: some View {
-        WorkoutExerciseView(rootIsActive: .constant(false), workout: workoutData[0])
-    }
-}
-#endif

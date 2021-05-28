@@ -8,12 +8,34 @@
 import SwiftUI
 
 struct WorkoutDetailView: View {
+    @State var selectedModel: Model?
     @Binding var rootIsActive: Bool
     var workout: Workout
     let layout = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
+    
+    private var models: [Model] {
+        // Dynamically get the models from the directory
+        let fileManager = FileManager.default
+        
+        guard let path = Bundle.main.resourcePath,
+              let files = try? fileManager.contentsOfDirectory(atPath: path)
+        else {
+            return []
+        }
+        
+        var availableModels: [Model] = []
+        for filename in files where filename.hasSuffix(".usdz") {
+            let modelName = filename.replacingOccurrences(of: ".usdz", with: "")
+            let model = Model(modelName: modelName)
+            availableModels.append(model)
+        }
+        
+        selectedModel = availableModels.first
+        return availableModels
+    }
     
     var body: some View {
         ZStack {
@@ -40,7 +62,7 @@ struct WorkoutDetailView: View {
             VStack {
                 Spacer()
                 VStack {
-                    NavigationLink(destination: WorkoutExerciseView(rootIsActive: $rootIsActive, workout: workout)) {
+                    NavigationLink(destination: WorkoutExerciseView(rootIsActive: $rootIsActive, selectedModel: $selectedModel, workout: workout, models: models)) {
                         Text("Begin workout")
                             .bold()
                             .font(.system(size: 18))
@@ -56,6 +78,9 @@ struct WorkoutDetailView: View {
             }
             .edgesIgnoringSafeArea(.bottom)
         }
+        .onAppear(perform: {
+            
+        })
     }
 }
 

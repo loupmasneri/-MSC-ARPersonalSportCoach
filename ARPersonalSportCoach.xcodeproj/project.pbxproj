@@ -21,6 +21,9 @@
 		3703CD572629C7D50036DE04 /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703CD562629C7D50036DE04 /* WorkoutDetailView.swift */; };
 		3703CD5B2629C9A20036DE04 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703CD5A2629C9A20036DE04 /* ColorExtension.swift */; };
 		3703CD5E2629DFE40036DE04 /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703CD5D2629DFE40036DE04 /* ExerciseCell.swift */; };
+		371D3DFF2660FE7800418B8B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371D3DFE2660FE7800418B8B /* Model.swift */; };
+		37687E712661129200FE1140 /* squat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 37687E702661129200FE1140 /* squat.usdz */; };
+		37687E74266112AA00FE1140 /* toy_drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 37687E73266112AA00FE1140 /* toy_drummer.usdz */; };
 		37BD180C262EF98F0021E675 /* WorkoutSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BD180B262EF98F0021E675 /* WorkoutSummary.swift */; };
 		37BD180F262F02B20021E675 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BD180E262F02B20021E675 /* ProfileView.swift */; };
 		37BD1812262F045E0021E675 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BD1811262F045E0021E675 /* UserDefaultsHelper.swift */; };
@@ -45,6 +48,9 @@
 		3703CD562629C7D50036DE04 /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		3703CD5A2629C9A20036DE04 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		3703CD5D2629DFE40036DE04 /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
+		371D3DFE2660FE7800418B8B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		37687E702661129200FE1140 /* squat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = squat.usdz; sourceTree = "<group>"; };
+		37687E73266112AA00FE1140 /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_drummer.usdz; sourceTree = "<group>"; };
 		37BD180B262EF98F0021E675 /* WorkoutSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummary.swift; sourceTree = "<group>"; };
 		37BD180E262F02B20021E675 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		37BD1811262F045E0021E675 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 				3703CD412629C1800036DE04 /* Structs */,
 				3703CD422629C1850036DE04 /* Components */,
 				3703CD552629C7AF0036DE04 /* Views */,
+				371D3E012660FF7B00418B8B /* models */,
 				3703CD2F2629C13E0036DE04 /* ContentView.swift */,
 				3703CD312629C13E0036DE04 /* Assets.xcassets */,
 				3703CD432629C1C90036DE04 /* Experience.rcproject */,
@@ -113,6 +120,7 @@
 			children = (
 				3703CD4C2629C1ED0036DE04 /* Workout.swift */,
 				37BD1811262F045E0021E675 /* UserDefaultsHelper.swift */,
+				371D3DFE2660FE7800418B8B /* Model.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -160,6 +168,15 @@
 				3703CD5A2629C9A20036DE04 /* ColorExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		371D3E012660FF7B00418B8B /* models */ = {
+			isa = PBXGroup;
+			children = (
+				37687E73266112AA00FE1140 /* toy_drummer.usdz */,
+				37687E702661129200FE1140 /* squat.usdz */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +236,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37687E74266112AA00FE1140 /* toy_drummer.usdz in Resources */,
+				37687E712661129200FE1140 /* squat.usdz in Resources */,
 				3703CD382629C13E0036DE04 /* LaunchScreen.storyboard in Resources */,
 				3703CD352629C13E0036DE04 /* Preview Assets.xcassets in Resources */,
 				3703CD322629C13E0036DE04 /* Assets.xcassets in Resources */,
@@ -242,6 +261,7 @@
 				37BD180F262F02B20021E675 /* ProfileView.swift in Sources */,
 				3703CD2E2629C13E0036DE04 /* SceneDelegate.swift in Sources */,
 				3703CD442629C1C90036DE04 /* Experience.rcproject in Sources */,
+				371D3DFF2660FE7800418B8B /* Model.swift in Sources */,
 				37BD1812262F045E0021E675 /* UserDefaultsHelper.swift in Sources */,
 				3703CD5E2629DFE40036DE04 /* ExerciseCell.swift in Sources */,
 				3703CD302629C13E0036DE04 /* ContentView.swift in Sources */,
