@@ -29,10 +29,13 @@ class Model: Identifiable {
 //                self.cancellable?.cancel()
             }, receiveValue: { entity in
                 // Get our model entity
-                entity.setScale([0.80, 0.80, 0.80], relativeTo: entity)
+//                // For testing purpose we scale those really down
+//                entity.setScale([0.002, 0.002, 0.002], relativeTo: entity)
+                entity.setScale([0.015, 0.015, 0.015], relativeTo: entity)
                 self.entity = entity
 //                self.cancellable?.cancel()
-                print("DEBUG: Successfully load model Entity for modelName: \(self.modelName)")
+                NotificationCenter.default.post(name: NSNotification.modelsLoading, object: nil)
+                print("DEBUG: Successfully load model Entity for modelName: \(self.modelName) in Model.swift")
             })
     }
 }

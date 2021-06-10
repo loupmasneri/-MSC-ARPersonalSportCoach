@@ -22,11 +22,22 @@
 		3703CD5B2629C9A20036DE04 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703CD5A2629C9A20036DE04 /* ColorExtension.swift */; };
 		3703CD5E2629DFE40036DE04 /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703CD5D2629DFE40036DE04 /* ExerciseCell.swift */; };
 		371D3DFF2660FE7800418B8B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371D3DFE2660FE7800418B8B /* Model.swift */; };
+		3733B20C2671A24B00944839 /* reverselunge.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 3733B2032671A24900944839 /* reverselunge.usdz */; };
+		3733B20D2671A24B00944839 /* jumpsquat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 3733B2042671A24A00944839 /* jumpsquat.usdz */; };
+		3733B20E2671A24B00944839 /* pushup.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 3733B2052671A24A00944839 /* pushup.usdz */; };
+		3733B2112671A24B00944839 /* janefonda.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 3733B2082671A24B00944839 /* janefonda.usdz */; };
+		3733B2132671A24B00944839 /* diamondpushup.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 3733B20A2671A24B00944839 /* diamondpushup.usdz */; };
 		37687E712661129200FE1140 /* squat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 37687E702661129200FE1140 /* squat.usdz */; };
-		37687E74266112AA00FE1140 /* toy_drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 37687E73266112AA00FE1140 /* toy_drummer.usdz */; };
 		37BD180C262EF98F0021E675 /* WorkoutSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BD180B262EF98F0021E675 /* WorkoutSummary.swift */; };
 		37BD180F262F02B20021E675 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BD180E262F02B20021E675 /* ProfileView.swift */; };
 		37BD1812262F045E0021E675 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BD1811262F045E0021E675 /* UserDefaultsHelper.swift */; };
+		37D713972672240E00FFB9C0 /* plank.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 37D713932672240D00FFB9C0 /* plank.usdz */; };
+		37D713982672240E00FFB9C0 /* rest.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 37D713942672240D00FFB9C0 /* rest.usdz */; };
+		37D713992672240E00FFB9C0 /* prisonerwalkup.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 37D713952672240D00FFB9C0 /* prisonerwalkup.usdz */; };
+		37D7139A2672240E00FFB9C0 /* largepushup.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 37D713962672240E00FFB9C0 /* largepushup.usdz */; };
+		37D7139C26722CE200FFB9C0 /* lateralsquat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 37D7139B26722CE200FFB9C0 /* lateralsquat.usdz */; };
+		37D7139E267251B100FFB9C0 /* NSNotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7139D267251B100FFB9C0 /* NSNotificationExtension.swift */; };
+		37D713A02672562A00FFB9C0 /* ExerciseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7139F2672562A00FFB9C0 /* ExerciseDetailView.swift */; };
 		37F518D9262D9756003DD567 /* WorkoutExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F518D8262D9756003DD567 /* WorkoutExerciseView.swift */; };
 		37F518DC262D9ECF003DD567 /* WorkoutSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F518DB262D9ECF003DD567 /* WorkoutSummaryView.swift */; };
 /* End PBXBuildFile section */
@@ -49,11 +60,22 @@
 		3703CD5A2629C9A20036DE04 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		3703CD5D2629DFE40036DE04 /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
 		371D3DFE2660FE7800418B8B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		3733B2032671A24900944839 /* reverselunge.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = reverselunge.usdz; sourceTree = "<group>"; };
+		3733B2042671A24A00944839 /* jumpsquat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = jumpsquat.usdz; sourceTree = "<group>"; };
+		3733B2052671A24A00944839 /* pushup.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = pushup.usdz; sourceTree = "<group>"; };
+		3733B2082671A24B00944839 /* janefonda.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = janefonda.usdz; sourceTree = "<group>"; };
+		3733B20A2671A24B00944839 /* diamondpushup.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = diamondpushup.usdz; sourceTree = "<group>"; };
 		37687E702661129200FE1140 /* squat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = squat.usdz; sourceTree = "<group>"; };
-		37687E73266112AA00FE1140 /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_drummer.usdz; sourceTree = "<group>"; };
 		37BD180B262EF98F0021E675 /* WorkoutSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummary.swift; sourceTree = "<group>"; };
 		37BD180E262F02B20021E675 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		37BD1811262F045E0021E675 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
+		37D713932672240D00FFB9C0 /* plank.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = plank.usdz; sourceTree = "<group>"; };
+		37D713942672240D00FFB9C0 /* rest.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = rest.usdz; sourceTree = "<group>"; };
+		37D713952672240D00FFB9C0 /* prisonerwalkup.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = prisonerwalkup.usdz; sourceTree = "<group>"; };
+		37D713962672240E00FFB9C0 /* largepushup.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = largepushup.usdz; sourceTree = "<group>"; };
+		37D7139B26722CE200FFB9C0 /* lateralsquat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = lateralsquat.usdz; sourceTree = "<group>"; };
+		37D7139D267251B100FFB9C0 /* NSNotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotificationExtension.swift; sourceTree = "<group>"; };
+		37D7139F2672562A00FFB9C0 /* ExerciseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailView.swift; sourceTree = "<group>"; };
 		37F518D8262D9756003DD567 /* WorkoutExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseView.swift; sourceTree = "<group>"; };
 		37F518DB262D9ECF003DD567 /* WorkoutSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,6 +180,7 @@
 				37F518D8262D9756003DD567 /* WorkoutExerciseView.swift */,
 				37F518DB262D9ECF003DD567 /* WorkoutSummaryView.swift */,
 				37BD180E262F02B20021E675 /* ProfileView.swift */,
+				37D7139F2672562A00FFB9C0 /* ExerciseDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				3703CD5A2629C9A20036DE04 /* ColorExtension.swift */,
+				37D7139D267251B100FFB9C0 /* NSNotificationExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -173,7 +197,16 @@
 		371D3E012660FF7B00418B8B /* models */ = {
 			isa = PBXGroup;
 			children = (
-				37687E73266112AA00FE1140 /* toy_drummer.usdz */,
+				3733B20A2671A24B00944839 /* diamondpushup.usdz */,
+				3733B2082671A24B00944839 /* janefonda.usdz */,
+				37D713962672240E00FFB9C0 /* largepushup.usdz */,
+				37D713932672240D00FFB9C0 /* plank.usdz */,
+				37D713952672240D00FFB9C0 /* prisonerwalkup.usdz */,
+				37D7139B26722CE200FFB9C0 /* lateralsquat.usdz */,
+				37D713942672240D00FFB9C0 /* rest.usdz */,
+				3733B2042671A24A00944839 /* jumpsquat.usdz */,
+				3733B2052671A24A00944839 /* pushup.usdz */,
+				3733B2032671A24900944839 /* reverselunge.usdz */,
 				37687E702661129200FE1140 /* squat.usdz */,
 			);
 			path = models;
@@ -236,10 +269,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37687E74266112AA00FE1140 /* toy_drummer.usdz in Resources */,
+				37D713992672240E00FFB9C0 /* prisonerwalkup.usdz in Resources */,
+				3733B20D2671A24B00944839 /* jumpsquat.usdz in Resources */,
+				37D7139C26722CE200FFB9C0 /* lateralsquat.usdz in Resources */,
+				3733B20C2671A24B00944839 /* reverselunge.usdz in Resources */,
+				37D713972672240E00FFB9C0 /* plank.usdz in Resources */,
 				37687E712661129200FE1140 /* squat.usdz in Resources */,
 				3703CD382629C13E0036DE04 /* LaunchScreen.storyboard in Resources */,
+				37D7139A2672240E00FFB9C0 /* largepushup.usdz in Resources */,
+				3733B20E2671A24B00944839 /* pushup.usdz in Resources */,
 				3703CD352629C13E0036DE04 /* Preview Assets.xcassets in Resources */,
+				37D713982672240E00FFB9C0 /* rest.usdz in Resources */,
+				3733B2132671A24B00944839 /* diamondpushup.usdz in Resources */,
+				3733B2112671A24B00944839 /* janefonda.usdz in Resources */,
 				3703CD322629C13E0036DE04 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,7 +305,9 @@
 				3703CD442629C1C90036DE04 /* Experience.rcproject in Sources */,
 				371D3DFF2660FE7800418B8B /* Model.swift in Sources */,
 				37BD1812262F045E0021E675 /* UserDefaultsHelper.swift in Sources */,
+				37D713A02672562A00FFB9C0 /* ExerciseDetailView.swift in Sources */,
 				3703CD5E2629DFE40036DE04 /* ExerciseCell.swift in Sources */,
+				37D7139E267251B100FFB9C0 /* NSNotificationExtension.swift in Sources */,
 				3703CD302629C13E0036DE04 /* ContentView.swift in Sources */,
 				3703CD4A2629C1EA0036DE04 /* Exercise.swift in Sources */,
 				37F518D9262D9756003DD567 /* WorkoutExerciseView.swift in Sources */,

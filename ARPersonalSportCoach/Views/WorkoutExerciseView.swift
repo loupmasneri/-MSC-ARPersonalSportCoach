@@ -11,6 +11,8 @@ import ARKit
 import ReplayKit
 import UIKit
 
+private var previousAnchorEntity: AnchorEntity? = nil
+
 struct WorkoutExerciseView: View {
     @State var globalHours: Int = 0
     @State var globalMinutes: Int = 0
@@ -22,7 +24,6 @@ struct WorkoutExerciseView: View {
     @State var currentExerciseTimer: Timer? = nil
     @State var currentExercise: Int = 0
     @State var currentRound: Int = 1
-    @State var anchorEntity: AnchorEntity = AnchorEntity(plane: .any)
     @Binding var rootIsActive: Bool
     @Binding var selectedModel: Model?
     var workout: Workout
@@ -81,7 +82,7 @@ struct WorkoutExerciseView: View {
 
     var body: some View {
         ZStack {
-            ARViewContainer(model: $selectedModel, anchorEntity: $anchorEntity)
+            ARViewContainer(model: $selectedModel)
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
@@ -130,7 +131,6 @@ struct WorkoutExerciseView: View {
             .buttonStyle(ScaleButtonStyle())
         )
         .onAppear(perform: {
-            selectedModel = models[0]
             startGlobalTimer()
             startExerciseTimer()
         })
@@ -186,7 +186,7 @@ struct NextExerciseButtonView: View {
                 } else {
                     currentExercise += 1
                     let nextModelIndex = models.firstIndex(where: {$0.modelName == workout.exercises[currentExercise].modelName})
-                    selectedModel = models[nextModelIndex!]
+                    selectedModel = models[nextModelIndex ?? 0]
                 }
                 resetTimer()
             }) {
@@ -204,9 +204,8 @@ struct NextExerciseButtonView: View {
     }
 }
 
-struct ARViewContainer: UIViewRepresentable {
+private struct ARViewContainer: UIViewRepresentable {
     @Binding var model: Model?
-    @Binding var anchorEntity: AnchorEntity
     
     func makeUIView(context: Context) -> ARView {
         let arView = ARView(frame: .zero)
@@ -226,7 +225,16 @@ struct ARViewContainer: UIViewRepresentable {
     
     func updateUIView(_ uiView: ARView, context: Context) {
         guard let model = model else { return }
-        
+        // This allow to remove the previous used model
+        if previousAnchorEntity != nil {
+            for entity in previousAnchorEntity!.children {
+                entity.removeFromParent()
+            }
+        }
+        let anchorEntity: AnchorEntity = AnchorEntity(plane: .any)
+        previousAnchorEntity = anchorEntity
+
+        // This allow to move the current model when pression "Move the coach"
         for entity in anchorEntity.children {
             entity.removeFromParent()
         }

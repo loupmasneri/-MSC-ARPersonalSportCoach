@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WorkoutDetailView: View {
     @State var selectedModel: Model?
+    @State var isButtonActivated: Bool = false
     @Binding var rootIsActive: Bool
     var workout: Workout
     let layout = [
@@ -16,8 +17,9 @@ struct WorkoutDetailView: View {
         GridItem(.flexible())
     ]
     
-    private var models: [Model] {
-        // Dynamically get the models from the directory
+    @State var models: [Model] = []
+    
+    private func loadModels() -> [Model] {
         let fileManager = FileManager.default
         
         guard let path = Bundle.main.resourcePath,
@@ -29,12 +31,17 @@ struct WorkoutDetailView: View {
         var availableModels: [Model] = []
         for filename in files where filename.hasSuffix(".usdz") {
             let modelName = filename.replacingOccurrences(of: ".usdz", with: "")
-            let model = Model(modelName: modelName)
-            availableModels.append(model)
+            // Only append the model in the array if he is one of the exercise
+            if workout.exercises.contains(where: {$0.modelName == modelName}) {
+                let model = Model(modelName: modelName)
+                availableModels.append(model)
+            }
         }
         
-        selectedModel = availableModels.first
+        let firstModelIndex = availableModels.firstIndex(where: {$0.modelName == workout.exercises.first?.modelName})
+        selectedModel = availableModels[firstModelIndex ?? 0]
         return availableModels
+        
     }
     
     var body: some View {
@@ -47,7 +54,7 @@ struct WorkoutDetailView: View {
                     .padding(.top)
                 LazyVGrid(columns: layout, spacing: 16) {
                     ForEach(workout.exercises, id: \.id) { exercise in
-                        NavigationLink(destination: Text("Destination")) {
+                        NavigationLink(destination: ExerciseDetailView(selectedModel: models.count > 0 ? models[models.firstIndex(where: {$0.modelName == exercise.modelName})!] : nil, model: models.count > 0 ? models[models.firstIndex(where: {$0.modelName == exercise.modelName})!] : nil)) {
                             ExerciseCell(exercise: exercise)
                         }
                         .buttonStyle(ScaleButtonStyle())
@@ -69,17 +76,20 @@ struct WorkoutDetailView: View {
                             .foregroundColor(.white)
                             .padding()
                             .frame(width: screen.width - (16 * 2))
-                            .background(Color.blue)
+//                            .background(Color.blue)
+                            .background(isButtonActivated ? Color.blue : Color.gray)
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                             .padding(.bottom, 32)
                     }
                     .buttonStyle(BackgroundGradientStyle(gradientColors: [Color.customWhite.opacity(0.001), .customWhite]))
+                    .disabled(!isButtonActivated)
                 }
             }
             .edgesIgnoringSafeArea(.bottom)
         }
         .onAppear(perform: {
-            
+            self.models = loadModels()
+            self.isButtonActivated = true
         })
     }
 }
