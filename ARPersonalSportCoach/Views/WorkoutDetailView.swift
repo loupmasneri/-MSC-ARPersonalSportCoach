@@ -20,28 +20,32 @@ struct WorkoutDetailView: View {
     @State var models: [Model] = []
     
     private func loadModels() -> [Model] {
+        // 1
         let fileManager = FileManager.default
         
+        // 2
         guard let path = Bundle.main.resourcePath,
               let files = try? fileManager.contentsOfDirectory(atPath: path)
         else {
             return []
         }
         
+        // 3
         var availableModels: [Model] = []
         for filename in files where filename.hasSuffix(".usdz") {
+            // 4
             let modelName = filename.replacingOccurrences(of: ".usdz", with: "")
-            // Only append the model in the array if he is one of the exercise
+            // 5 Only append the model in the array if he is one of the exercise
             if workout.exercises.contains(where: {$0.modelName == modelName}) {
                 let model = Model(modelName: modelName)
                 availableModels.append(model)
             }
         }
         
+        // 6
         let firstModelIndex = availableModels.firstIndex(where: {$0.modelName == workout.exercises.first?.modelName})
         selectedModel = availableModels[firstModelIndex ?? 0]
         return availableModels
-        
     }
     
     var body: some View {

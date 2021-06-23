@@ -205,32 +205,38 @@ struct NextExerciseButtonView: View {
 }
 
 private struct ARViewContainer: UIViewRepresentable {
+    // 1
     @Binding var model: Model?
     
     func makeUIView(context: Context) -> ARView {
+        // 2
         let arView = ARView(frame: .zero)
         let config = ARWorldTrackingConfiguration()
         
+        // 3
         config.planeDetection = [.horizontal]
         config.environmentTexturing = .automatic
         
+        // 4
         if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh) {
             config.sceneReconstruction = .mesh
         }
         
+        // 5
         arView.session.run(config)
-        
         return arView
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
+        // 1
         guard let model = model else { return }
-        // This allow to remove the previous used model
+        // 2 This allow to remove the previous used model
         if previousAnchorEntity != nil {
             for entity in previousAnchorEntity!.children {
                 entity.removeFromParent()
             }
         }
+        // 3
         let anchorEntity: AnchorEntity = AnchorEntity(plane: .any)
         previousAnchorEntity = anchorEntity
 
@@ -239,10 +245,12 @@ private struct ARViewContainer: UIViewRepresentable {
             entity.removeFromParent()
         }
 
+        // 4
         if let modelEntity = model.entity {
             anchorEntity.addChild(modelEntity)
 
             uiView.scene.addAnchor(anchorEntity)
+            // 5
             for anim in modelEntity.availableAnimations {
                 modelEntity.playAnimation(anim.repeat(duration: .infinity), transitionDuration: 1.25, startsPaused: false)
             }
@@ -250,10 +258,9 @@ private struct ARViewContainer: UIViewRepresentable {
             print("DEBUG: Unable to load modelEntity named: \(model.modelName)")
         }
 
+        // 6
         DispatchQueue.main.async {
             self.model = nil
         }
-        
     }
-    
 }
